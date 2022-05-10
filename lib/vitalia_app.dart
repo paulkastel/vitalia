@@ -24,7 +24,7 @@ class VitaliaApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Colors.white.withOpacity(0.71),
-          suffixStyle: TextStyle(fontWeight: FontWeight.w700, color: Colors.black, fontSize: 24),
+          suffixStyle: const TextStyle(fontWeight: FontWeight.w700, color: Colors.black, fontSize: 24),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(15),

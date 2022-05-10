@@ -12,7 +12,7 @@ void main() {
   late WeightCubit testedCubit;
   late MockWeightRepository mockRepository;
 
-  final exampleData = ChallengeDto(
+  const exampleData = ChallengeDto(
     name: 'My first challenge',
     rewardDto: RewardDto(coins: 100, message: 'Good job!'),
   );
@@ -38,7 +38,7 @@ void main() {
       return testedCubit;
     },
     act: (cubit) => cubit.onSaved('98.0'),
-    expect: () => [WeightState.loading(), WeightState.success(exampleData)],
+    expect: () => [const WeightState.loading(), const WeightState.success(exampleData)],
     verify: (cubit) {
       verify(() => mockRepository.finishWeightingChallenge('98.0'));
     },

@@ -31,14 +31,14 @@ void main() {
       supportedLocales: I10n.delegate.supportedLocales,
       home: BlocProvider(
         create: (context) => locator.get<WeightCubit>(),
-        child: WeightInputCard(),
+        child: const WeightInputCard(),
       ),
     );
   });
 
   testWidgets('should find Card, TextField and no save button when state is initial',
       (tester) async {
-    when(() => locator.get<WeightCubit>().state).thenReturn(WeightState.initial());
+    when(() => locator.get<WeightCubit>().state).thenReturn(const WeightState.initial());
     await tester.pumpWidget(testedWidget);
     await tester.pump();
     expect(find.byType(Card), findsOneWidget);

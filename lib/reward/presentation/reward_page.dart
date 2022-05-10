@@ -80,7 +80,7 @@ class RewardPage extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppDimen.size3XL * 4),
+                  padding: const EdgeInsets.symmetric(horizontal: AppDimen.size3XL * 4),
                   child: ElevatedButton(
                     onPressed: () => _onClosePressed(context),
                     child: Text(I10n.of(context).thanks),

@@ -13,7 +13,7 @@ class WeightCubit extends Cubit<WeightState> {
 
   Future<void> onSaved(String weight) async {
     try {
-      emit(WeightState.loading());
+      emit(const WeightState.loading());
       final challenge = await _repository.finishWeightingChallenge(weight);
       emit(WeightState.success(challenge));
     } on Exception catch (ex) {
