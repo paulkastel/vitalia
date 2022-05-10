@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:vitalia/commons/constants/app_dimen.dart';
-import 'package:vitalia/commons/constants/app_route.dart';
 import 'package:vitalia/home/presentation/account_balance.dart';
 import 'package:vitalia/home/presentation/profile_level.dart';
 
 class ProfileInfo extends StatelessWidget {
-  const ProfileInfo({Key? key}) : super(key: key);
+  const ProfileInfo({this.onProfileTap, Key? key}) : super(key: key);
 
-  Future<void> _onProfilePicutreTap(BuildContext context) {
-    return Navigator.pushNamed(context, AppRoute.profile);
-  }
+  final VoidCallback? onProfileTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(AppDimen.sizeL),
       child: InkWell(
-        onTap: () => _onProfilePicutreTap(context),
+        onTap: onProfileTap,
         child: Stack(
           children: [
             Positioned(
               top: 0,
               left: 20,
               child: Column(
-                children: [
+                children: const [
                   AccountBalance(100),
                   ProfileLevel(1),
                 ],
               ),
             ),
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 35,
               backgroundImage: NetworkImage(

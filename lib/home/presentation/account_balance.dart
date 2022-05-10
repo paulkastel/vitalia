@@ -11,8 +11,8 @@ class AccountBalance extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 140,
-      padding: EdgeInsets.all(AppDimen.sizeM),
-      decoration: ShapeDecoration(
+      padding: const EdgeInsets.all(AppDimen.sizeM),
+      decoration: const ShapeDecoration(
         shape: StadiumBorder(),
         color: Colors.white,
         shadows: [
@@ -30,12 +30,11 @@ class AccountBalance extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SvgPicture.asset(AppAsset.coin, width: 20),
-            SizedBox(
-              width: 5,
+            const SizedBox(width: 5),
+            Text(
+              coins.toString(),
+              style: Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w700),
             ),
-            Text(coins.toString(),
-                style:
-                    Theme.of(context).textTheme.bodyText2?.copyWith(fontWeight: FontWeight.w700)),
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:vitalia/commons/constants/app_asset.dart';
 import 'package:vitalia/commons/constants/app_color.dart';
 import 'package:vitalia/commons/constants/app_dimen.dart';
 import 'package:vitalia/commons/widget/background.dart';
+import 'package:vitalia/generated/l10n.dart';
 import 'package:vitalia/reward/application/share_service.dart';
 import 'package:vitalia/reward/domain/challenge_dto.dart';
 
@@ -26,7 +27,7 @@ class RewardPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            Align(
+            const Align(
               alignment: Alignment.bottomCenter,
               child: Background(color: AppColor.yellowWhite),
             ),
@@ -37,7 +38,7 @@ class RewardPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: IconButton(
                     onPressed: () => _onClosePressed(context),
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                   ),
                 ),
                 Text(
@@ -78,13 +79,16 @@ class RewardPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                ElevatedButton(
-                  onPressed: () => _onClosePressed(context),
-                  child: Text('Dzięki!'),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppDimen.size3XL * 4),
+                  child: ElevatedButton(
+                    onPressed: () => _onClosePressed(context),
+                    child: Text(I10n.of(context).thanks),
+                  ),
                 ),
                 TextButton(
                   onPressed: () => _onSharePressed(_challengeDto),
-                  child: Text('Udostępnij'),
+                  child: Text(I10n.of(context).share),
                 )
               ],
             )

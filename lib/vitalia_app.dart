@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vitalia/commons/constants/app_color.dart';
-import 'package:vitalia/home/presentation/home_page.dart';
 import 'package:vitalia/commons/navigation/router.dart' as router;
+import 'package:vitalia/generated/l10n.dart';
+import 'package:vitalia/home/presentation/home_page.dart';
 
 class VitaliaApp extends StatelessWidget {
   const VitaliaApp({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class VitaliaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
-        appBarTheme: AppBarTheme(color: AppColor.pinkF084A1),
+        appBarTheme: const AppBarTheme(color: AppColor.pinkF084A1),
         scaffoldBackgroundColor: Colors.white,
         cardTheme: CardTheme(
           elevation: 2,
@@ -22,12 +24,13 @@ class VitaliaApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Colors.white.withOpacity(0.71),
+          suffixStyle: TextStyle(fontWeight: FontWeight.w700, color: Colors.black, fontSize: 24),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        dialogTheme: DialogTheme(
+        dialogTheme: const DialogTheme(
           backgroundColor: AppColor.yellowWhite,
           elevation: 0,
           titleTextStyle: TextStyle(
@@ -41,7 +44,7 @@ class VitaliaApp extends StatelessWidget {
             fontSize: 15,
           ),
         ),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headline6: TextStyle(
             fontWeight: FontWeight.w700,
             color: AppColor.blueish4D6F7C,
@@ -50,16 +53,19 @@ class VitaliaApp extends StatelessWidget {
           headline5: TextStyle(fontWeight: FontWeight.w700, color: Colors.black, fontSize: 24),
           headline4: TextStyle(fontWeight: FontWeight.w700, color: Colors.black, fontSize: 18),
           bodyText1: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 14),
-          bodyText2:
-              TextStyle(fontWeight: FontWeight.w400, color: AppColor.blueish4D6F7C, fontSize: 15),
+          bodyText2: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: AppColor.blueish4D6F7C,
+            fontSize: 15,
+          ),
           subtitle1: TextStyle(fontWeight: FontWeight.w700, color: Colors.black, fontSize: 24),
           button: TextStyle(fontWeight: FontWeight.w800, color: Colors.white, fontSize: 13),
         ),
-        iconTheme: IconThemeData(color: AppColor.greyC4C4C4),
+        iconTheme: const IconThemeData(color: AppColor.greyC4C4C4),
         textButtonTheme: TextButtonThemeData(
           style: TextButton.styleFrom(
             primary: AppColor.blueish4D6F7C,
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontSize: 16,
               decoration: TextDecoration.underline,
             ),
@@ -69,11 +75,18 @@ class VitaliaApp extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             primary: AppColor.pinkF084A1,
             onPrimary: Colors.white,
-            textStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
-            shape: StadiumBorder(),
+            textStyle: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+            shape: const StadiumBorder(),
           ),
         ),
       ),
+      localizationsDelegates: const [
+        I10n.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: I10n.delegate.supportedLocales,
       home: const HomePage(),
       onGenerateRoute: router.onGenerateRoute,
     );

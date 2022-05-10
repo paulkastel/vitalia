@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
+  flutter: ^2.10.5
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -27,24 +28,46 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter:
-    sdk: flutter
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
   dio: 4.0.6
-  equatable: 2.0.3
+  
+  flutter:
+    sdk: flutter
+
   flutter_bloc: 8.0.1
+
+  flutter_localizations: 
+    sdk: flutter
+
   flutter_svg: 1.0.3
+  freezed_annotation: 2.0.3
+  # we are open to use Injectable - in other Miquido projects we use such code generators depending on need
   get_it: 7.2.0
+  intl: 0.17.0
   share_plus: 4.0.4
 
 dev_dependencies:
+  bloc_test: 9.0.3
+  build_runner: 2.1.10
+
   flutter_test:
     sdk: flutter
+
+  freezed: 2.0.3
+  json_serializable: 6.2.0
+  
+  miquido_flutter_lints:
+    git:
+      url: https://github.com/miquido/miquido_flutter_lints.git
+      ref: main
+
+  mocktail: 0.3.0
+
+dependency_overrides:
+  analyzer: ^3.0.0
     
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -87,3 +110,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_intl:
+  enabled: true
+  class_name: I10n

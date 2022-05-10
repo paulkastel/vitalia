@@ -14,7 +14,7 @@ void setupServiceLocator() {
 }
 
 GetIt _setupUtils() {
-  return locator..registerFactory(() => Dio(BaseOptions(baseUrl: 'http://www.vitalia.pl')));
+  return locator..registerSingleton(Dio(BaseOptions(baseUrl: 'https://www.vitalia.pl')));
 }
 
 GetIt _setupData() {

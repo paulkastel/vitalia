@@ -1,43 +1,15 @@
-import 'package:equatable/equatable.dart';
-
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vitalia/reward/domain/reward_dto.dart';
 
-class ChallengeDto extends Equatable {
-  ChallengeDto({
-    required this.name,
-    required this.rewardDto,
-  });
+part 'challenge_dto.freezed.dart';
+part 'challenge_dto.g.dart';
 
-  factory ChallengeDto.fromMap(Map<String, dynamic> map) {
-    return ChallengeDto(
-      name: map['name'] ?? '',
-      rewardDto: RewardDto.fromMap(map['rewardDto']),
-    );
-  }
+@freezed
+class ChallengeDto with _$ChallengeDto {
+  const factory ChallengeDto({
+    required String name,
+    required RewardDto rewardDto,
+  }) = _ChallengeDto;
 
-  final String name;
-  final RewardDto rewardDto;
-
-  @override
-  List<Object> get props => [name, rewardDto];
-
-  @override
-  String toString() => 'ChallengeDto(name: $name, rewardDto: $rewardDto)';
-
-  ChallengeDto copyWith({
-    String? name,
-    RewardDto? rewardDto,
-  }) {
-    return ChallengeDto(
-      name: name ?? this.name,
-      rewardDto: rewardDto ?? this.rewardDto,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'rewardDto': rewardDto.toMap(),
-    };
-  }
+  factory ChallengeDto.fromJson(Map<String, Object?> json) => _$ChallengeDtoFromJson(json);
 }

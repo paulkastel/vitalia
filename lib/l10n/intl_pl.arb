@@ -1,0 +1,16 @@
+{
+  "yourProfile": "Twój profil",
+  "settings": "Ustawienia",
+  "yourLevel": "Poziom {level}",
+  "congrats": "Gratulacje",
+  "finishedChallengeConfirm": "Właśnie ukończyłaś wyzwanie {challengeName}",
+  "collectReward": "Odbieram nagrodę!",
+  "thanks": "Dzięki!",
+  "share": "Udostępnij!",
+  "weightYourself": "Zważ się",
+  "save": "Zapisz",
+  "enterBodyMass": "Wpisz aktualną masę ciała :)",
+  "firstWeightChallengeTitle": "Moje pierwsze ważenie",
+  "shareContent": "Hej ukończyłam {challengeName} i zdobyłam {coins} monet na http://www.vitalia.pl/",
+  "firstWeightChallengeMsg": "Brawo! Regularne aktualizowanie Twojej wagi pozwoli Ci śledzić postępy oraz odpowiednio dopasować wartość kaloryczna posiłków w aplikacji."
+}

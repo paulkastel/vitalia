@@ -1,0 +1,17 @@
+{
+  "yourProfile": "Profile",
+  "settings": "Settings",
+  "yourLevel": "Level {level}",
+  "congrats": "Congratulations",
+  "finishedChallengeConfirm": "You just completed {challengeName}",
+  "collectReward": "Collect reward!",
+  "thanks": "Thanks!",
+  "share": "Share!",
+  "weightYourself": "Weight yourself",
+  "save": "Save",
+  "enterBodyMass": "Enter current body mass :)",
+  "firstWeightChallengeTitle": "My first weighting",
+  "shareContent": "I just finished {challengeName} and got {coins} coins at http://www.vitalia.pl/",
+  "firstWeightChallengeMsg": "Nice! Tracking your weight will help measure your progress and balance diet with Vitalia app."
+}
+

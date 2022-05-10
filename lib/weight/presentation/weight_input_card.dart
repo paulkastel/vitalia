@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vitalia/commons/constants/app_dimen.dart';
-import 'package:vitalia/commons/constants/app_route.dart';
-import 'package:vitalia/reward/domain/challenge_dto.dart';
 import 'package:vitalia/commons/constants/app_asset.dart';
 import 'package:vitalia/commons/constants/app_color.dart';
+import 'package:vitalia/commons/constants/app_dimen.dart';
+import 'package:vitalia/commons/constants/app_route.dart';
+import 'package:vitalia/generated/l10n.dart';
+import 'package:vitalia/reward/domain/challenge_dto.dart';
 import 'package:vitalia/reward/presentation/congrats_dialog.dart';
 import 'package:vitalia/weight/application/cubit/weight_cubit.dart';
 
@@ -40,7 +41,7 @@ class _WeightInputCardState extends State<WeightInputCard> {
   }
 
   Future<void> _showDialog(ChallengeDto challenge) async {
-    await showDialog(
+    return showDialog<void>(
       barrierColor: Colors.transparent,
       context: context,
       builder: (context) {
@@ -52,11 +53,11 @@ class _WeightInputCardState extends State<WeightInputCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(AppDimen.sizeL),
+      padding: const EdgeInsets.all(AppDimen.sizeL),
       child: Card(
         child: Stack(
           children: [
-            Positioned(
+            const Positioned(
               top: 70,
               right: -60,
               child: CircleAvatar(
@@ -73,37 +74,44 @@ class _WeightInputCardState extends State<WeightInputCard> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: AppDimen.sizeXL),
-                        child: Text('Zważ się', style: Theme.of(context).textTheme.headline4),
+                        child: Text(
+                          I10n.of(context).weightYourself,
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       BlocListener<WeightCubit, WeightState>(
                         listener: (context, state) async {
-                          if (state is WeightSuccess) {
-                            await _showDialog(state.challengeDto);
-                            Navigator.pushNamed(
-                              context,
-                              AppRoute.reward,
-                              arguments: state.challengeDto,
-                            );
-                          } else if (state is WeightErorr) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('This went wrong: ${state.error}')),
-                            );
-                          }
+                          await state.maybeMap(
+                            success: (success) async {
+                              await _showDialog(success.challengeDto);
+                              await Navigator.pushNamed(
+                                context,
+                                AppRoute.reward,
+                                arguments: success.challengeDto,
+                              );
+                            },
+                            error: (error) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('This went wrong: ${error.error}')),
+                              );
+                            },
+                            orElse: () => null,
+                          );
                         },
                         child: _saveEnabled
                             ? Padding(
                                 padding: const EdgeInsets.only(right: AppDimen.sizeL),
                                 child: ElevatedButton(
                                   style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-                                        minimumSize: MaterialStateProperty.all(Size(100, 30)),
+                                        minimumSize: MaterialStateProperty.all(const Size(100, 30)),
                                         backgroundColor: MaterialStateProperty.all(
                                           AppColor.blueish469DB3,
                                         ),
                                       ),
                                   onPressed: _saveWeight,
                                   child: Text(
-                                    'Zapisz'.toUpperCase(),
+                                    I10n.of(context).save.toUpperCase(),
                                     style: Theme.of(context)
                                         .textTheme
                                         .button
@@ -116,9 +124,9 @@ class _WeightInputCardState extends State<WeightInputCard> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 5 * AppDimen.size2XL),
+                    padding: const EdgeInsets.only(right: AppDimen.size2XL * 5),
                     child: Text(
-                      'Wpisz aktualną masę ciała :)',
+                      I10n.of(context).enterBodyMass,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
@@ -130,10 +138,10 @@ class _WeightInputCardState extends State<WeightInputCard> {
                           controller: _weightTextController,
                           maxLength: 6,
                           keyboardType: TextInputType.number,
-                          decoration: InputDecoration(counterText: ''),
+                          decoration: const InputDecoration(counterText: '', suffixText: 'kg'),
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Image.asset(
                         AppAsset.scaleBadge,
                         width: 120,

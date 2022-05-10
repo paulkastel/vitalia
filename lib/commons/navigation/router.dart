@@ -8,11 +8,14 @@ import 'package:vitalia/reward/presentation/reward_page.dart';
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case AppRoute.profile:
-      return _createRoute(settings: settings, page: ProfilePage());
+      return _createRoute(settings: settings, page: const ProfilePage());
     case AppRoute.reward:
-      return _createRoute(settings: settings, page: RewardPage(settings.arguments as ChallengeDto));
+      return _createRoute(
+        settings: settings,
+        page: RewardPage(settings.arguments! as ChallengeDto),
+      );
   }
-  return _createRoute(settings: settings, page: HomePage());
+  return _createRoute(settings: settings, page: const HomePage());
 }
 
 PageRoute<Object> _createRoute({required RouteSettings settings, required Widget page}) {

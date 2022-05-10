@@ -7,9 +7,9 @@ class WeightRepository {
   final WeightApi _weightApi;
 
   Future<ChallengeDto> finishWeightingChallenge(String weight) async {
-    final parsedWeight = await double.tryParse(weight);
+    final parsedWeight = double.tryParse(weight);
     if (parsedWeight != null) {
-      return _weightApi.finishWeightingChallenge(parsedWeight);
+      return _weightApi.finishWeightingChallenge();
     } else {
       throw Exception('Invalid weight');
     }

@@ -1,30 +1,12 @@
 part of 'weight_cubit.dart';
 
-abstract class WeightState extends Equatable {
-  const WeightState();
+@freezed
+class WeightState with _$WeightState {
+  const factory WeightState.error(Exception error) = _Error;
 
-  @override
-  List<Object> get props => [];
-}
+  const factory WeightState.initial() = _Initial;
 
-class WeightInitial extends WeightState {}
+  const factory WeightState.loading() = _Loading;
 
-class WeightSuccess extends WeightState {
-  WeightSuccess(this.challengeDto);
-
-  final ChallengeDto challengeDto;
-
-  @override
-  List<Object> get props => [challengeDto];
-}
-
-class WeightLoading extends WeightState {}
-
-class WeightErorr extends WeightState {
-  WeightErorr(this.error);
-
-  final Exception error;
-
-  @override
-  List<Object> get props => [error];
+  const factory WeightState.success(ChallengeDto challengeDto) = _Success;
 }

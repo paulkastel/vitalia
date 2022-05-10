@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vitalia/commons/widget/background.dart';
+import 'package:vitalia/generated/l10n.dart';
 import 'package:vitalia/home/presentation/profile_info.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -10,16 +11,16 @@ class ProfilePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Twój profil'),
+          title: Text(I10n.of(context).yourProfile),
         ),
         body: Stack(
           children: [
-            Background(),
+            const Background(),
             ListView(
               children: [
-                ProfileInfo(),
+                const ProfileInfo(),
                 Text(
-                  'Ustawienia',
+                  I10n.of(context).settings,
                   style: Theme.of(context).textTheme.headline4,
                 )
               ],
